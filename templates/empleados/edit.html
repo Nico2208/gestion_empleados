@@ -1,0 +1,65 @@
+{% include 'header.html' %}
+<br>
+Formulario para editar registro
+{% for empleado in empleados %}
+    {{ empleado[0] }}
+    {{ empleado[1] }}
+    {{ empleado[2] }}
+    {{ empleado[3] }}
+
+
+<form method="post" action="/update" enctype="multipart/form-data">
+
+    <div class="card">
+        <div class="card-header">
+            Editar Empleado
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del empleado</h5>
+            <p class="card-text">
+
+                <div class="form-group">
+                    <input id="txtID" class="form-control" type="hidden" name="txtID" value="{{empleado[0]}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtNombre">Nombre:</label>
+                    <input id="txtNombre" class="form-control" type="text" name="txtNombre" value="{{empleado[1]}}">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label for="txtCorreo">Correo:</label>
+                    <input id="txtCorreo" class="form-control" type="text" name="txtCorreo" value="{{empleado[2]}}">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label for="txtFoto">Foto:</label>
+                    <br>
+                        <img src="{{ url_for( 'uploads', nombreFoto = empleado[3] ) }}" width="100" alt="Foto de empleado">
+                    <br>
+                    <input id="txtFoto" class="form-control" type="file" name="txtFoto">
+                    <br>
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" value="Modificar">
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                </div>
+        </div>
+    </div>
+
+
+
+
+
+    
+
+</form>
+
+{% endfor %}
+
+{% include 'footer.html' %}
